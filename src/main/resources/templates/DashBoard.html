@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:data="http://www.thymeleaf.org/extras/data">
+
+<head>
+	<meta charset="UTF-8"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+	<title>Lista jogos</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+	
+</head>
+<body>
+	<div class="page-header">
+		<div class="container-fluid">
+			<h1>Dashboard</h1>
+		</div>
+	</div>
+
+	<div class="container-fluid">
+		<div class="row" style="margin-top: 20px">
+			<div class="col-md-12">
+				<div class="table-responsive text-center">
+					<table class="table">
+
+						<tr>
+							<th class="text-center">Sorteio</th>
+							<th class="text-center">Data Sorteio</th>
+							<th class="text-center">Dezena</th>
+							<th class="text-center">Dezena</th>
+							<th class="text-center">Dezena</th>
+							<th class="text-center">Dezena</th>
+							<th class="text-center">Dezena</th>
+							<th class="text-center">Dezena</th>
+							<th class="text-center">Numeros par</th>
+							<th class="text-center">Numeros Impar</th>
+						</tr>
+						<tr th:each="sorteio : ${sorteios}">
+							<td th:text="${sorteio.concurso}"></td>
+							<td th:text="${{sorteio.dataDoSorteio}}"></td>
+							<td th:text="${sorteio.dezena1}"></td>
+							<td th:text="${sorteio.dezena2}"></td>
+							<td th:text="${sorteio.dezena3}"></td>
+							<td th:text="${sorteio.dezena4}"></td>
+							<td th:text="${sorteio.dezena5}"></td>
+							<td th:text="${sorteio.dezena6}"></td>
+							<td th:text="${sorteio.numerosPar}"></td>
+							<td th:text="${sorteio.numerosImpar}"></td>
+						</tr>
+
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
