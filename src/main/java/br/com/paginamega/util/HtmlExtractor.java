@@ -6,8 +6,8 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -65,8 +65,8 @@ public class HtmlExtractor {
 		
 		try {
 
-			ultimoId = ultimoId == null ? 0 : Integer.parseInt(em.createQuery("SELECT MAX(id) FROM "+ Sorteio.class.getName()).getSingleResult().toString());				
-//			ultimoId = Integer.parseInt(em.createQuery("SELECT MAX(id) FROM "+ Sorteio.class.getName()).getSingleResult().toString());				
+//			ultimoId = ultimoId == null ? 0 : Integer.parseInt(em.createQuery("SELECT MAX(id) FROM "+ Sorteio.class.getName()).getSingleResult().toString());				
+			ultimoId = Integer.parseInt(em.createQuery("SELECT MAX(id) FROM "+ Sorteio.class.getName()).getSingleResult().toString());				
 				
 //			JOptionPane.showMessageDialog(null, ultimoId);
 			
@@ -116,9 +116,10 @@ public class HtmlExtractor {
 	
 	public Sorteio assemblyEntity(String plainEnity) throws ParseException{
 		String[] entity = plainEnity.split(";");
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		Sorteio sorteio = new Sorteio();
 		sorteio.setConcurso(contador);
-		sorteio.setDataDoSorteio(DateFormat.getDateInstance().parse(entity[indiceDataSorteio]));
+		sorteio.setDataDoSorteio(sdf.parse(entity[indiceDataSorteio]));
 		sorteio.setDezena1(Integer.parseInt(entity[indiceDezena1]));
 		sorteio.setDezena2(Integer.parseInt(entity[indiceDezena2]));
 		sorteio.setDezena3(Integer.parseInt(entity[indiceDezena3]));
