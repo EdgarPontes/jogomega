@@ -65,8 +65,8 @@ public class HtmlExtractor {
 		
 		try {
 
-			ultimoId = ultimoId == null ? 0 : Integer.parseInt(em.createQuery("SELECT MAX(id) FROM "+ Sorteio.class.getName()).getSingleResult().toString());				
-//			ultimoId = Integer.parseInt(em.createQuery("SELECT MAX(id) FROM "+ Sorteio.class.getName()).getSingleResult().toString());				
+//			ultimoId = ultimoId == null ? 0 : Integer.parseInt(em.createQuery("SELECT MAX(id) FROM "+ Sorteio.class.getName()).getSingleResult().toString());				
+			ultimoId = Integer.parseInt(em.createQuery("SELECT MAX(id) FROM "+ Sorteio.class.getName()).getSingleResult().toString());				
 				
 //			JOptionPane.showMessageDialog(null, ultimoId);
 			
