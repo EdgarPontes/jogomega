@@ -61,13 +61,13 @@ public class HtmlExtractor {
 		this.charset = charset;
 		BufferedReader reader;
 		String line = null;
-		Integer ultimoId;
-		
+		Integer ultimoId = null ;
 		try {
-
-			ultimoId = em.createQuery("SELECT MAX(id) FROM "+ Sorteio.class.getName()).getSingleResult() == null ? 0 :				
-				Integer.parseInt(em.createQuery("SELECT MAX(id) FROM "+ Sorteio.class.getName()).getSingleResult().toString());
+			
+			ultimoId = ultimoId == null ? 0 :				
+				Integer.parseInt(em.createQuery("SELECT MAX(id) FROM "+ Sorteio.class.getName()).getSingleResult().toString());	
 				
+//			ultimoId = Integer.parseInt(em.createQuery("SELECT MAX(id) FROM "+ Sorteio.class.getName()).getSingleResult().toString());
 //			JOptionPane.showMessageDialog(null, ultimoId);
 			
 			reader = Files.newBufferedReader(this.path, this.charset);
