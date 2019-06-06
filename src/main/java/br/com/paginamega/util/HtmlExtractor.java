@@ -22,8 +22,6 @@ import br.com.paginamega.repository.SorteioRepository;
 @Service
 public class HtmlExtractor {
 
-	private Path path;
-	private Charset charset;
 	private int contador = 0;
 	private int par = 0;
 	private int impar = 0;
@@ -49,16 +47,14 @@ public class HtmlExtractor {
 	private final int indiceEstimativaPremio = 18;
 	private final int indiceAcumuladoMegaDaVirada = 19;
 
-//	EntityManagerFactory emf = Persistence.createEntityManagerFactory("bolaomegaPU");
 	@PersistenceContext
 	EntityManager em ;
 	
 	@Autowired
 	private SorteioRepository sorteioRepository;
 
-	public void extractDataFromHtml(String path, Charset charset) throws ParseException {
-		this.path = Paths.get(path);
-		this.charset = charset;
+	public void extractDataFromHtml(String path1, Charset charset) throws ParseException {
+
 		BufferedReader reader;
 		String line = null;
 		Integer ultimoId = null ;
@@ -68,24 +64,24 @@ public class HtmlExtractor {
 				Integer.parseInt(em.createQuery("SELECT MAX(id) FROM "+ Sorteio.class.getName()).getSingleResult().toString());	
 				
 //			ultimoId = Integer.parseInt(em.createQuery("SELECT MAX(id) FROM "+ Sorteio.class.getName()).getSingleResult().toString());
-//			JOptionPane.showMessageDialog(null, ultimoId);
+			contador = ultimoId;
 			
-			reader = Files.newBufferedReader(this.path, this.charset);
+			reader = Files.newBufferedReader(Paths.get(path1), charset);
 
 			while ((line = reader.readLine()) != null) {
 				String plainEntity = "";
-				System.out.println("WHILE=1");
+//				System.out.println("WHILE=1");
 				if (line.matches("<tr.*")) {
-					System.out.println("IF=1");
+//					System.out.println("IF=1");
 					line = readLine(reader);
 					if ((line.matches("<td rowspan=\"\\d+\">.*"))) {
 
-						System.out.println("IF = 2");
+//						System.out.println("IF = 2");
 						plainEntity = readOneEntireEntity(reader);
 						contador++;
 						if(contador > ultimoId ) {
 							System.out.println("linha numero: " + contador);
-							System.err.println(plainEntity);
+//							System.err.println(plainEntity);
 							Sorteio sorteio = assemblyEntity(plainEntity);
 							persistData(sorteio);							
 						}

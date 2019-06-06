@@ -57,7 +57,7 @@ public class BaixarJogoZip {
 				fout.close();
 			}
 			zin.close();
-			File file = new File("d_megasc.htm");
+		/**	File file = new File("mega.htm");
 //			File file = new File("D_MEGA.HTM");
 			FileInputStream fis = null;
 			BufferedInputStream bis = null;
@@ -84,7 +84,7 @@ public class BaixarJogoZip {
 				e.printStackTrace();
 			} catch (IOException e) {
 				e.printStackTrace();
-			}
+			}**/
 			// -------------------------------------------------------------//
 			// Step 4: //
 			// -------------------------------------------------------------//

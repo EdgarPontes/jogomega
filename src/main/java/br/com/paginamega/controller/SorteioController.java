@@ -34,10 +34,7 @@ public class SorteioController {
 	}
 	
 	@GetMapping("/atualizar")
-	public ModelAndView downloadResultados() {
-		
-		BaixarJogoZip baixarJogozip = new BaixarJogoZip();
-		baixarJogozip.baixarZip();
+	public ModelAndView atualizarResultados() {
 		
 		Charset charset = StandardCharsets.ISO_8859_1;
 		/*Path do jogo em ordem de sorteio*/
@@ -52,6 +49,15 @@ public class SorteioController {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
+		
+		return new ModelAndView("redirect:/");
+	}
+	
+	@GetMapping("/download")
+	public ModelAndView downloadResultados() {
+		
+		BaixarJogoZip baixarJogozip = new BaixarJogoZip();
+		baixarJogozip.baixarZip();
 		
 		return new ModelAndView("redirect:/");
 	}
