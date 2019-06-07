@@ -41,10 +41,12 @@ public class SorteioController {
 //		String path = "d_mega.htm";
 		/*Path do jogo em ordem crescente dos numeros*/
 		String path = "d_megasc.htm";
+		String pathArquivoSalvo = "ultimoJogoGravadoBanco";
 //		String path = "/media/edgar/Backup/WorkspaceSpring/MegaSena/d_mega.htm";
 		
 //		HtmlExtractor extractor = new HtmlExtractor(path, charset);
 		try {
+			htmlExtractor.lerUltimoJogo(pathArquivoSalvo);
 			htmlExtractor.extractDataFromHtml(path, charset);
 		} catch (ParseException e) {
 			e.printStackTrace();
