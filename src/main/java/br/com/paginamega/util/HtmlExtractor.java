@@ -61,12 +61,12 @@ public class HtmlExtractor {
 
 		BufferedReader reader;
 		String line = null;
-		Integer ultimoId = 0;
+//		Integer ultimoId = 0;
 		try {
-
-			ultimoId = ultimoId == null ? 0
-					: Integer.parseInt(em.createQuery("SELECT MAX(id) FROM " + Sorteio.class.getName())
-							.getSingleResult().toString());
+//
+//			ultimoId = ultimoId == null ? 0
+//					: Integer.parseInt(em.createQuery("SELECT MAX(id) FROM " + Sorteio.class.getName())
+//							.getSingleResult().toString());
 
 //			ultimoId = Integer.parseInt(em.createQuery("SELECT MAX(id) FROM "+ Sorteio.class.getName()).getSingleResult().toString());
 
