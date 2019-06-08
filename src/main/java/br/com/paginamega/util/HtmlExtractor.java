@@ -21,7 +21,6 @@ import br.com.paginamega.repository.SorteioRepository;
 @Service
 public class HtmlExtractor {
 
-	private int contador = 0;
 	private int par = 0;
 	private int impar = 0;
 
@@ -57,6 +56,7 @@ public class HtmlExtractor {
 		BufferedReader reader;
 		String line = null;
 		Integer ultimoId ;
+		int contador = 0;
 		try {
 			
 			Object getId = em.createQuery("SELECT MAX(id) FROM " + Sorteio.class.getName()).getSingleResult();
@@ -74,7 +74,7 @@ public class HtmlExtractor {
 						contador++;
 						if (contador > ultimoId ) {
 							System.out.println("linha numero: " + contador);
-							Sorteio sorteio = assemblyEntity(plainEntity);
+							Sorteio sorteio = assemblyEntity(plainEntity, contador);
 							persistData(sorteio);
 						}
 					}
@@ -101,7 +101,7 @@ public class HtmlExtractor {
 
 	}
 
-	public Sorteio assemblyEntity(String plainEnity) throws ParseException {
+	public Sorteio assemblyEntity(String plainEnity, int contador) throws ParseException {
 		String[] entity = plainEnity.split(";");
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		Sorteio sorteio = new Sorteio();
