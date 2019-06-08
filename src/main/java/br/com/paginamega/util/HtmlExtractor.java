@@ -1,10 +1,6 @@
 package br.com.paginamega.util;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -28,7 +24,6 @@ public class HtmlExtractor {
 	private int contador = 0;
 	private int par = 0;
 	private int impar = 0;
-	private int ultimoJogo;
 
 	private final int indiceDataSorteio = 0;
 	private final int indiceDezena1 = 1;
@@ -61,39 +56,30 @@ public class HtmlExtractor {
 
 		BufferedReader reader;
 		String line = null;
-//		Integer ultimoId = 0;
+		Integer ultimoId ;
 		try {
-//
-//			ultimoId = ultimoId == null ? 0
-//					: Integer.parseInt(em.createQuery("SELECT MAX(id) FROM " + Sorteio.class.getName())
-//							.getSingleResult().toString());
+			
+			Object getId = em.createQuery("SELECT MAX(id) FROM " + Sorteio.class.getName()).getSingleResult();
 
-//			ultimoId = Integer.parseInt(em.createQuery("SELECT MAX(id) FROM "+ Sorteio.class.getName()).getSingleResult().toString());
-
+			ultimoId = getId == null ? 0 : Integer.parseInt(getId.toString());
+			
 			reader = Files.newBufferedReader(Paths.get(path1), charset);
 
 			while ((line = reader.readLine()) != null) {
 				String plainEntity = "";
-//				System.out.println("WHILE=1");
 				if (line.matches("<tr.*")) {
-//					System.out.println("IF=1");
 					line = readLine(reader);
 					if ((line.matches("<td rowspan=\"\\d+\">.*"))) {
-
-//						System.out.println("IF = 2");
 						plainEntity = readOneEntireEntity(reader);
 						contador++;
-						if (contador > ultimoJogo ) {
+						if (contador > ultimoId ) {
 							System.out.println("linha numero: " + contador);
-//							System.err.println(plainEntity);
 							Sorteio sorteio = assemblyEntity(plainEntity);
 							persistData(sorteio);
 						}
 					}
 				}
 			}
-			gravarUltimoJogo("ultimoJogoGravadoBanco", contador);
-
 		} catch (IOException e) {
 			System.out.println("Erro com o reader");
 			e.printStackTrace();
@@ -106,53 +92,12 @@ public class HtmlExtractor {
 				System.out.println("erro fechando EntityManager");
 			}
 		}
-
 	}
 
 	@Transactional
 	public void persistData(Sorteio sorteio) {
 
 		sorteioRepository.save(sorteio);
-
-	}
-
-	public void gravarUltimoJogo(String pathArquivoSalvo, Integer ultimoJogo) {
-		try {
-			File file = new File(pathArquivoSalvo);
-//			long begin = System.currentTimeMillis();
-			BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-//			writer.write("Arquivo gravado em : " + new SimpleDateFormat("dd/MM/yyyy hh:mm:ss").format(new Date()));
-//			writer.newLine();
-			writer.write(ultimoJogo.toString());
-//			writer.newLine();
-//			long end = System.currentTimeMillis();
-//			writer.write("Tempo de gravação: " + (end - begin) + "ms.");
-			// Criando o conteúdo do arquivo
-			writer.flush();
-			// Fechando conexão e escrita do arquivo.
-			writer.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		System.out.println("Arquivo gravado em: " + Paths.get(pathArquivoSalvo));
-
-	}
-
-	public void lerUltimoJogo(String pathArquivoSalvo) {
-		try {
-			FileReader fileReader = new FileReader(pathArquivoSalvo);
-			BufferedReader reader = new BufferedReader(fileReader);
-			String data = null;
-			while ((data = reader.readLine()) != null) {
-				ultimoJogo = Integer.parseInt(data);
-			}
-			fileReader.close();
-			reader.close();
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 
 	}
 
@@ -212,12 +157,6 @@ public class HtmlExtractor {
 		plainEntityToReturn = plainEntityToReturn.replaceAll(",", ".");
 		plainEntityToReturn = plainEntityToReturn.replaceAll(";;", ";vazio;");
 
-		// apelando
-//		plainEntityToReturn = plainEntityToReturn.replaceAll("vazio;BELOHORIZONTE;vazio;MG;", "BELOHORIZONTE;MG;");
-
-//		plainEntityToReturn = plainEntityToReturn.replaceAll("</td><td rowspan=\"\\d+\">", ";");
-//		plainEntityToReturn = plainEntityToReturn.replaceAll("</td>", "");
-//		plainEntityToReturn = plainEntityToReturn.replaceAll("<td>", ";");
 		return plainEntityToReturn;
 	}
 

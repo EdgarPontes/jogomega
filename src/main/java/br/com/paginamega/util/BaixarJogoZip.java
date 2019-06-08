@@ -1,6 +1,5 @@
 package br.com.paginamega.util;
 
-import java.io.DataInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,7 +19,6 @@ public class BaixarJogoZip {
 		// -----------------------------------------------------//
 		URL u;
 		InputStream is = null;
-		DataInputStream dis;
 
 		try {
 			// ------------------------------------------------------------//
@@ -38,11 +36,10 @@ public class BaixarJogoZip {
 			// Step 3: Open an input stream from the url. //
 			// ----------------------------------------------//
 			is = u.openStream(); // throws an IOException
-			// ZipFile zipFile = new ZipFile(is);
-			// entries = zipFile.entries();
-			// FileInputStream fin = new FileInputStream(is);
+			
 			ZipInputStream zin = new ZipInputStream(is);
 			ZipEntry ze = null;
+		
 			while ((ze = zin.getNextEntry()) != null) {
 				System.out.println("Unzipping " + ze.getName());
 				FileOutputStream fout = new FileOutputStream(ze.getName());
@@ -53,53 +50,7 @@ public class BaixarJogoZip {
 				fout.close();
 			}
 			zin.close();
-		/**	File file = new File("mega.htm");
-//			File file = new File("D_MEGA.HTM");
-			FileInputStream fis = null;
-			BufferedInputStream bis = null;
-			
-			// DataInputStream dis = null;
-			try {
-				fis = new FileInputStream(file);
-				// Here BufferedInputStream is added for fast reading.
-				bis = new BufferedInputStream(fis);
-				dis = new DataInputStream(bis);
-				// dis.available() returns 0 if the file does not have more
-				// lines.
-//				while (dis.available() != 0) {
-//					// this statement reads the line from the file and print it
-//					// to
-//					// the console.
-//					System.out.println(dis.readLine());
-//				}
-				// dispose all the resources after using them.
-				fis.close();
-				bis.close();
-				dis.close();
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}**/
-			// -------------------------------------------------------------//
-			// Step 4: //
-			// -------------------------------------------------------------//
-			// Convert the InputStream to a buffered DataInputStream. //
-			// Buffering the stream makes the reading faster; the //
-			// readLine() method of the DataInputStream makes the reading //
-			// easier. //
-			// -------------------------------------------------------------//
-			// dis = new DataInputStream(new BufferedInputStream(is));
-			// ------------------------------------------------------------//
-			// Step 5: //
-			// ------------------------------------------------------------//
-			// Now just read each record of the input stream, and print //
-			// it out. Note that it's assumed that this problem is run //
-			// from a command-line, not from an application or applet. //
-			// ------------------------------------------------------------//
-			// while ((s = dis.readLine()) != null) {
-			// System.out.println(s);
-			// }
+		
 		} catch (MalformedURLException mue) {
 			System.out.println("Ouch - a MalformedURLException happened.");
 			mue.printStackTrace();
