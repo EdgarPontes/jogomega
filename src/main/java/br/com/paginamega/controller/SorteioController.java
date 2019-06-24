@@ -7,34 +7,39 @@ import java.text.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import br.com.paginamega.repository.JogoRepository;
 import br.com.paginamega.repository.SorteioRepository;
 import br.com.paginamega.util.BaixarJogoZip;
 import br.com.paginamega.util.HtmlExtractor;
 
 @Controller
+@RequestMapping("/")
 public class SorteioController {
 
 	@Autowired
 	private SorteioRepository sorteioRepository;
+	@Autowired
+	private JogoRepository jogoRepository;
 	
 	@Autowired
 	private HtmlExtractor htmlExtractor;
 	
-	@GetMapping("/")
+	@RequestMapping
 	public ModelAndView dashboard() {
 		ModelAndView mv = new ModelAndView("DashBoard");
 		
 		mv.addObject("sorteios", sorteioRepository.findAll(Sort.by(Sort.Direction.DESC, "id")));
+		mv.addObject("jogos", jogoRepository.findAll(Sort.by(Sort.Direction.DESC, "concurso")));
 //		mv.addObject("sorteios", sorteioRepository.findByConcursoLessThan(2100));
 //		mv.addObject("sorteios", sorteioRepository.findByConcursoGreaterThan(2137));
 				
 		return mv;
 	}
 	
-	@GetMapping("/atualizar")
+	@RequestMapping("/atualizar")
 	public ModelAndView atualizarResultados() {
 		
 		Charset charset = StandardCharsets.ISO_8859_1;
@@ -52,7 +57,7 @@ public class SorteioController {
 		return new ModelAndView("redirect:/");
 	}
 	
-	@GetMapping("/download")
+	@RequestMapping("/download")
 	public ModelAndView downloadResultados() {
 		
 		BaixarJogoZip baixarJogozip = new BaixarJogoZip();

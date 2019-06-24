@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -18,28 +19,37 @@ public class Jogo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@NotNull(message="Preencha o número do concurso")
 	private Integer concurso;
 	
+	@NotNull(message="Preencha a data do sorteio")
 	@Column(name = "data_sorteio")
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Temporal(TemporalType.DATE)
 	private Date dataDoSorteio;
 	
+	@NotNull(message="Preencha o número da dezena 1")
 	@Column(name = "dezena_1")
 	private Integer dezena1;
 	
+	@NotNull(message="Preencha o número da dezena 2")
 	@Column(name = "dezena_2")
 	private Integer dezena2;
 	
+	@NotNull(message="Preencha o número da dezena 3")
 	@Column(name = "dezena_3")
 	private Integer dezena3;
 	
+	@NotNull(message="Preencha o número da dezena 4")
 	@Column(name = "dezena_4")
 	private Integer dezena4;
 	
+	@NotNull(message="Preencha o número da dezena 5")
 	@Column(name = "dezena_5")
 	private Integer dezena5;
 	
+	@NotNull(message="Preencha o número da dezena 6")
 	@Column(name = "dezena_6")
 	private Integer dezena6;
 
@@ -114,7 +124,12 @@ public class Jogo {
 	public void setDezena6(Integer dezena6) {
 		this.dezena6 = dezena6;
 	}
-	
-	
 
+	@Override
+	public String toString() {
+		return "Jogo [id=" + id + ", concurso=" + concurso + ", dataDoSorteio=" + dataDoSorteio + ", dezena1=" + dezena1
+				+ ", dezena2=" + dezena2 + ", dezena3=" + dezena3 + ", dezena4=" + dezena4 + ", dezena5=" + dezena5
+				+ ", dezena6=" + dezena6 + "]";
+	}
+	
 }

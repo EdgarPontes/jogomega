@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:data="http://www.thymeleaf.org/extras/data">
+
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<title>Jogos Feitos</title>
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/bootstrap.min.css}" />
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/bootstrap-datepicker.standalone.min.css}" />
+
+</head>
+<body>
+	<div class="page-header">
+		<div class="container-fluid">
+			<div class="pos-f-t">
+				<div class="collapse" id="navbarToggleExternalContent">
+					<div class="bg-dark p-4">
+						<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+							<div class="collapse navbar-collapse" id="navbarSupportedContent">
+								<ul class="navbar-nav mr-auto">
+									<li class="nav-item active"><a class="nav-link" href="#">Jogos
+											Feitos <span class="sr-only">(current)</span>
+									</a></li>
+									<li>
+										<div class="dropdown">
+											<button class="btn btn-secondary dropdown-toggle"
+												type="button" id="dropdownMenu2" data-toggle="dropdown"
+												aria-haspopup="true" aria-expanded="false">Menu:</button>
+											<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+												<a class="dropdown-item" type="button" th:href="@{/}">Dashboard</a>
+											</div>
+										</div>
+									</li>
+								</ul>
+								<form class="form-inline my-2 my-lg-0">
+									<input class="form-control mr-sm-2" type="search"
+										placeholder="Search" aria-label="Search">
+									<button class="btn btn-outline-success my-2 my-sm-0"
+										type="submit">Search</button>
+								</form>
+							</div>
+						</nav>
+
+					</div>
+				</div>
+				<nav class="navbar navbar-dark bg-dark">
+					<button class="navbar-toggler" type="button" data-toggle="collapse"
+						data-target="#navbarToggleExternalContent"
+						aria-controls="navbarToggleExternalContent" aria-expanded="false"
+						aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+				</nav>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row" style="margin-top: 20px">
+			<div class="col-md-12">
+				<form method="post" th:action="@{/jogos}" th:object="${jogo}">
+					<div class="alert alert-success"
+						th:if="${!#strings.isEmpty(mensagem)}">
+						<span th:text="${mensagem}">Jogo salvo com sucesso!!!</span>
+					</div>
+					<div class="alert alert-danger" th:if="${#fields.hasAnyErrors()}">
+						<div th:each="detailedError : ${#fields.detailedErrors()}">
+							<span th:text="${detailedError.message}"></span>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-6"
+							th:classappend="${#fields.hasErrors('dataDoSorteio')} ? has-error">
+							<label for="dataDoSorteio">Data sorteio</label> <input
+								type="text" class="form-control" id="dataDoSorteio"
+								placeholder="Data sorteio xx/xx/xxxx"
+								th:field="*{dataDoSorteio}" data-provide="datepicker"
+								data-date-format="dd/mm/yyyy" data-date-language="pt-BR"
+								data-date-autoclose="true" data-date-today-highlight="true"
+								data-date-orientation="bottom">
+						</div>
+						<div class="form-group col-md-6"
+							th:classappend="${#fields.hasErrors('concurso')} ? has-error">
+							<label for="concurso">Concurso</label> <input type="text"
+								class="form-control" id="concurso" placeholder="Concurso"
+								th:field="*{concurso}">
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-6"
+							th:classappend="${#fields.hasErrors('dezena1')} ? has-error">
+							<label for="dezena1">Dezena-1</label> <input type="text"
+								class="form-control" id="dezena1" placeholder="Dezena 1"
+								th:field="*{dezena1}">
+						</div>
+						<div class="form-group col-md-6"
+							th:classappend="${#fields.hasErrors('dezena2')} ? has-error">
+							<label for="dezena2">Dezena-2</label> <input type="text"
+								class="form-control" id="dezena2" placeholder="Dezena 2"
+								th:field="*{dezena2}">
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-6"
+							th:classappend="${#fields.hasErrors('dezena3')} ? has-error">
+							<label for="dezena3">Dezena-3</label> <input type="text"
+								class="form-control" id="dezena3" placeholder="Dezena 3"
+								th:field="*{dezena3}">
+						</div>
+						<div class="form-group col-md-6"
+							th:classappend="${#fields.hasErrors('dezena4')} ? has-error">
+							<label for="dezena4">Dezena-4</label> <input type="text"
+								class="form-control" id="dezena4" placeholder="Dezena 4"
+								th:field="*{dezena4}">
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-6"
+							th:classappend="${#fields.hasErrors('dezena5')} ? has-error">
+							<label for="dezena5">Dezena-5</label> <input type="text"
+								class="form-control" id="dezena5" placeholder="Dezena 5"
+								th:field="*{dezena5}">
+						</div>
+						<div class="form-group col-md-6"
+							th:classappend="${#fields.hasErrors('dezena6')} ? has-error">
+							<label for="dezena6">Dezena-6</label> <input type="text"
+								class="form-control" id="dezena6" placeholder="Dezena 6"
+								th:field="*{dezena6}">
+						</div>
+					</div>
+
+					<button type="submit" class="btn btn-primary">Salvar</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	<script th:src="@{/js/jquery-2.1.4.min.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/bootstrap-datepicker.min.js}"></script>
+	<script th:src="@{/js/bootstrap-datepicker.pt-BR.min.js}"></script>
+</body>
+
+</html>
