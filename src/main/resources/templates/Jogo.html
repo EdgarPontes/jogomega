@@ -74,63 +74,62 @@
 						</div>
 					</div>
 					<div class="form-row">
-						<div class="form-group col-md-6"
-							th:classappend="${#fields.hasErrors('dataDoSorteio')} ? has-error">
+						<div class="form-group col-md-6">
 							<label for="dataDoSorteio">Data sorteio</label> <input
 								type="text" class="form-control" id="dataDoSorteio"
 								placeholder="Data sorteio xx/xx/xxxx"
 								th:field="*{dataDoSorteio}" data-provide="datepicker"
 								data-date-format="dd/mm/yyyy" data-date-language="pt-BR"
 								data-date-autoclose="true" data-date-today-highlight="true"
-								data-date-orientation="bottom">
+								data-date-orientation="bottom" 
+							th:classappend="${#fields.hasErrors('dataDoSorteio')} ? is-invalid">
 						</div>
-						<div class="form-group col-md-6"
-							th:classappend="${#fields.hasErrors('concurso')} ? has-error">
+						<div class="form-group col-md-6">
 							<label for="concurso">Concurso</label> <input type="text"
 								class="form-control" id="concurso" placeholder="Concurso"
-								th:field="*{concurso}">
+								th:field="*{concurso}" 
+							th:classappend="${#fields.hasErrors('concurso')} ? is-invalid">
 						</div>
 					</div>
 					<div class="form-row">
-						<div class="form-group col-md-6"
-							th:classappend="${#fields.hasErrors('dezena1')} ? has-error">
+						<div class="form-group col-md-6">
 							<label for="dezena1">Dezena-1</label> <input type="text"
 								class="form-control" id="dezena1" placeholder="Dezena 1"
-								th:field="*{dezena1}">
+								th:field="*{dezena1}" 
+							th:classappend="${#fields.hasErrors('dezena1')} ? is-invalid">
 						</div>
-						<div class="form-group col-md-6"
-							th:classappend="${#fields.hasErrors('dezena2')} ? has-error">
+						<div class="form-group col-md-6">
 							<label for="dezena2">Dezena-2</label> <input type="text"
 								class="form-control" id="dezena2" placeholder="Dezena 2"
-								th:field="*{dezena2}">
+								th:field="*{dezena2}" 
+							th:classappend="${#fields.hasErrors('dezena2')} ? is-invalid">
 						</div>
 					</div>
 					<div class="form-row">
-						<div class="form-group col-md-6"
-							th:classappend="${#fields.hasErrors('dezena3')} ? has-error">
+						<div class="form-group col-md-6">
 							<label for="dezena3">Dezena-3</label> <input type="text"
 								class="form-control" id="dezena3" placeholder="Dezena 3"
-								th:field="*{dezena3}">
+								th:field="*{dezena3}" 
+							th:classappend="${#fields.hasErrors('dezena3')} ? is-invalid">
 						</div>
-						<div class="form-group col-md-6"
-							th:classappend="${#fields.hasErrors('dezena4')} ? has-error">
+						<div class="form-group col-md-6">
 							<label for="dezena4">Dezena-4</label> <input type="text"
 								class="form-control" id="dezena4" placeholder="Dezena 4"
-								th:field="*{dezena4}">
+								th:field="*{dezena4}" 
+							th:classappend="${#fields.hasErrors('dezena4')} ? is-invalid"> 
 						</div>
 					</div>
 					<div class="form-row">
-						<div class="form-group col-md-6"
-							th:classappend="${#fields.hasErrors('dezena5')} ? has-error">
+						<div class="form-group col-md-6">
 							<label for="dezena5">Dezena-5</label> <input type="text"
 								class="form-control" id="dezena5" placeholder="Dezena 5"
-								th:field="*{dezena5}">
+								th:field="*{dezena5}" 
+							th:classappend="${#fields.hasErrors('dezena5')} ? is-invalid">
 						</div>
-						<div class="form-group col-md-6"
-							th:classappend="${#fields.hasErrors('dezena6')} ? has-error">
+						<div class="form-group col-md-6">
 							<label for="dezena6">Dezena-6</label> <input type="text"
 								class="form-control" id="dezena6" placeholder="Dezena 6"
-								th:field="*{dezena6}">
+								th:field="*{dezena6}" th:classappend="${#fields.hasErrors('dezena6')} ? is-invalid">
 						</div>
 					</div>
 
