@@ -2,6 +2,7 @@ package br.com.paginamega.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
@@ -20,8 +21,14 @@ public class JogoController {
 	@Autowired
 	private JogoRepository repo;
 	
+	@RequestMapping
+	public ModelAndView jogo() {
+		ModelAndView mv = new ModelAndView("JogosFeitos");
+		return mv.addObject("jogos", repo.findAll(Sort.by(Sort.Direction.DESC, "concurso")));
+	}
+	
 	@RequestMapping("/novo")
-	public ModelAndView jogo(){
+	public ModelAndView novo(){
 		ModelAndView mv = new ModelAndView("Jogo");
 			mv.addObject(new Jogo());
 		return mv;

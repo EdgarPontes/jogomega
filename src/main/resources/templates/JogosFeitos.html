@@ -38,8 +38,8 @@
 						role="button" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false"> Menu </a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" th:href="@{/jogos/novo}">Lançar jogo feito</a> 
-							<a class="dropdown-item" th:href="@{/jogos}">Jogo feito</a> 
+							<a class="dropdown-item" th:href="@{/jogos/novo}">Lançar jogo feito</a>
+							<a class="dropdown-item" th:href="@{/jogos}">Jogos feitos</a>
 							<div class="dropdown-divider"></div>
 							<a class="dropdown-item" th:href="@{/atualizar}">Atualizar Jogos</a>
 							<a class="dropdown-item" th:href="@{/download}">Download Jogos</a>
@@ -47,8 +47,8 @@
 				</ul>
 				<form class="form-inline my-2 my-lg-0">
 					<input class="form-control mr-sm-2" type="search"
-						placeholder="Search" aria-label="Search">
-					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+						placeholder="Buscar sorteio" aria-label="Search">
+					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
 				</form>
 			</div>
 		</nav>
@@ -57,29 +57,25 @@
 						<thead class="table-dark">
 							<tr>
 								<th class="text-center">Sorteio</th>
-								<th class="text-center">Data Sorteio</th>
+								<th class="text-center">Data jogo</th>
 								<th class="text-center">Dezena</th>
 								<th class="text-center">Dezena</th>
 								<th class="text-center">Dezena</th>
 								<th class="text-center">Dezena</th>
 								<th class="text-center">Dezena</th>
 								<th class="text-center">Dezena</th>
-								<th class="text-center">Numeros par</th>
-								<th class="text-center">Numeros Impar</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr th:each="sorteio : ${sorteios}">
-								<td th:text="${sorteio.concurso}"></td>
-								<td th:text="${{sorteio.dataDoSorteio}}"></td>
-								<td th:text="${sorteio.dezena1}"></td>
-								<td th:text="${sorteio.dezena2}"></td>
-								<td th:text="${sorteio.dezena3}"></td>
-								<td th:text="${sorteio.dezena4}"></td>
-								<td th:text="${sorteio.dezena5}"></td>
-								<td th:text="${sorteio.dezena6}"></td>
-								<td th:text="${sorteio.numerosPar}"></td>
-								<td th:text="${sorteio.numerosImpar}"></td>
+							<tr th:each="jogo : ${jogos}">
+								<td th:text="${jogo.concurso}"></td>
+								<td th:text="${{jogo.dataDoSorteio}}"></td>
+								<td th:text="${jogo.dezena1}"></td>
+								<td th:text="${jogo.dezena2}"></td>
+								<td th:text="${jogo.dezena3}"></td>
+								<td th:text="${jogo.dezena4}"></td>
+								<td th:text="${jogo.dezena5}"></td>
+								<td th:text="${jogo.dezena6}"></td>
 							</tr>
 						</tbody>
 					</table>
