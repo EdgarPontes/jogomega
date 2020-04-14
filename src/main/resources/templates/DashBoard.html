@@ -12,8 +12,12 @@
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" type="text/css"
 	th:href="@{/css/bootstrap.min.css}" />
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+<!--link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"-->
+	<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
+	<link rel="stylesheet"
+	href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
 
 <title>Jogos Mega</title>
 </head>
@@ -45,16 +49,16 @@
 							<a class="dropdown-item" th:href="@{/download}">Download Jogos</a>
 						</div></li>
 				</ul>
-				<form class="form-inline my-2 my-lg-0">
+				<!--form class="form-inline my-2 my-lg-0">
 					<input class="form-control mr-sm-2" type="search"
 						placeholder="Search" aria-label="Search">
 					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-				</form>
+				</form-->
 			</div>
 		</nav>
 				<div class="col py-3 px-lg-5 border bg-light">
-					<table class="table">
-						<thead class="table-dark">
+					<table id="tabela" class="table table-striped table-bordered" style="width:100%">
+						<thead >
 							<tr>
 								<th class="text-center">Sorteio</th>
 								<th class="text-center">Data Sorteio</th>
@@ -83,15 +87,31 @@
 							</tr>
 						</tbody>
 					</table>
+					<tfoot>
+						<tr>
+							<th class="text-center">Sorteio</th>
+							<th class="text-center">Data Sorteio</th>
+							<th class="text-center">Dezena</th>
+							<th class="text-center">Dezena</th>
+							<th class="text-center">Dezena</th>
+							<th class="text-center">Dezena</th>
+							<th class="text-center">Dezena</th>
+							<th class="text-center">Dezena</th>
+							<th class="text-center">Numeros par</th>
+							<th class="text-center">Numeros Impar</th>
+						</tr>
+					</tfoot>
 				</div>
 			</div>
 
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+	<!--script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script-->
+	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+	<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+	<script src="/js/jogos.js"></script>
 </body>
 </html>
