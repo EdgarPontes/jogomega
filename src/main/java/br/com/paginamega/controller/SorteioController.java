@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import br.com.paginamega.repository.SorteioRepository;
 import br.com.paginamega.util.BaixarJogoZip;
+import br.com.paginamega.util.BaixarPageJogo;
 import br.com.paginamega.util.HtmlExtractor;
 
 @Controller
@@ -20,45 +21,44 @@ public class SorteioController {
 
 	@Autowired
 	private SorteioRepository sorteioRepository;
-	
+
 	@Autowired
 	private HtmlExtractor htmlExtractor;
-	
+
 	@RequestMapping
 	public ModelAndView dashboard() {
 		ModelAndView mv = new ModelAndView("DashBoard");
-		
+
 		mv.addObject("sorteios", sorteioRepository.findAll(Sort.by(Sort.Direction.DESC, "id")));
-//		mv.addObject("sorteios", sorteioRepository.findByConcursoLessThan(2100));
-//		mv.addObject("sorteios", sorteioRepository.findByConcursoGreaterThan(2137));
-				
+		// mv.addObject("sorteios", sorteioRepository.findByConcursoLessThan(2100));
+		// mv.addObject("sorteios", sorteioRepository.findByConcursoGreaterThan(2137));
+
 		return mv;
 	}
-	
+
 	@RequestMapping("/atualizar")
 	public ModelAndView atualizarResultados() {
+		System.out.println("Atualizando!!!");
+
+		Charset charset = StandardCharsets.UTF_8;
 		
-		Charset charset = StandardCharsets.ISO_8859_1;
-		/*Path do jogo em ordem de sorteio*/
-//		String path = "d_mega.htm";
-		/*Path do jogo em ordem crescente dos numeros*/
 		String path = "d_megasc.htm";
-//		String path = "/media/edgar/Backup/WorkspaceSpring/MegaSena/d_mega.htm";
+		
 		try {
 			htmlExtractor.extractDataFromHtml(path, charset);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		
+
 		return new ModelAndView("redirect:/");
 	}
-	
+
 	@RequestMapping("/download")
 	public ModelAndView downloadResultados() {
-		
-		BaixarJogoZip baixarJogozip = new BaixarJogoZip();
-		baixarJogozip.baixarZip();
-		
+
+		BaixarPageJogo baixarPageJogo = new BaixarPageJogo();
+		baixarPageJogo.BaixarPage();
+
 		return new ModelAndView("redirect:/");
 	}
 }

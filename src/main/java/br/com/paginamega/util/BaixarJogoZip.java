@@ -31,7 +31,8 @@ public class BaixarJogoZip {
 			/*Url para download dos números por ordem de sorteio*/
 //			u = new URL("http://www1.caixa.gov.br/loterias/_arquivos/loterias/D_megase.zip");
 			/*Url para dawnload dos números em ordem crescente*/
-			u = new URL("http://www1.caixa.gov.br/loterias/_arquivos/loterias/D_mgsasc.zip"); 
+			//u = new URL("http://www1.caixa.gov.br/loterias/_arquivos/loterias/D_mgsasc.zip"); 
+			u = new URL("http://www.loterias.caixa.gov.br/wps/portal/loterias/landing/megasena/!ut/p/a1/04_Sj9CPykssy0xPLMnMz0vMAfGjzOLNDH0MPAzcDbwMPI0sDBxNXAOMwrzCjA0sjIEKIoEKnN0dPUzMfQwMDEwsjAw8XZw8XMwtfQ0MPM2I02-AAzgaENIfrh-FqsQ9wNnUwNHfxcnSwBgIDUyhCvA5EawAjxsKckMjDDI9FQE-F4ca/dl5/d5/L2dBISEvZ0FBIS9nQSEh/pw/Z7_HGK818G0K8DBC0QPVN93KQ10G1/res/id=historicoHTML/c=cacheLevelPage/=/");
 			// ----------------------------------------------//
 			// Step 3: Open an input stream from the url. //
 			// ----------------------------------------------//

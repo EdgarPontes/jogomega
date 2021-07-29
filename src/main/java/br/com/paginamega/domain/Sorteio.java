@@ -20,6 +20,8 @@ public class Sorteio {
 	private Long id;
 	private Integer concurso;
 	
+	private String CidadeUF;
+	
 	@Column(name = "data_sorteio")
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Temporal(TemporalType.DATE)
@@ -49,26 +51,50 @@ public class Sorteio {
 	@Column(name = "numeros_impar")
 	private Integer numerosImpar;
 	
-	@Column(name = "arrecadacao_total")
-	private Double arrecadacaoTotal;
-	
 	@Column(name = "ganhadores_sena")
 	private Integer ganhadoresSena;
-	
-	private String cidade;
-	private String UF;
-	private Double rateioSena;
 	private Integer ganhadoresQuina;
-	private Double rateioQuina;
 	private Integer ganhadoresQuadra;
+	private Double rateioSena;
+	private Double rateioQuina;
 	private Double rateioQuadra;
-	private String acumulado;
+	private String cidade;
+	
+	@Column(name = "arrecadacao_total")
 	private Double valorAcumulado;
 	private Double estimativaPremio;
-	private Double acumuladoMegaDaVirada;
+	private Double acumuladoProxConcurso;
+
+	private String eAcumulado;
+	private String sorteioEspecial;
+	private String observacao;
 	
 	public Sorteio() {
 		
+	}
+
+	public String getObservacao() {
+		return observacao;
+	}
+
+	public void setObservacao(String observacao) {
+		this.observacao = observacao;
+	}
+
+	public String getSorteioEspecial() {
+		return sorteioEspecial;
+	}
+
+	public void setSorteioEspecial(String sorteioEspecial) {
+		this.sorteioEspecial = sorteioEspecial;
+	}
+
+	public String geteAcumulado() {
+		return eAcumulado;
+	}
+
+	public void seteAcumulado(String eAcumulado) {
+		this.eAcumulado = eAcumulado;
 	}
 
 	public Sorteio(Integer concurso, Integer dezena1, Integer dezena2, Integer dezena3, Integer dezena4,
@@ -170,14 +196,6 @@ public class Sorteio {
 		this.numerosImpar = numerosImpar;
 	}
 
-	public Double getArrecadacaoTotal() {
-		return arrecadacaoTotal;
-	}
-
-	public void setArrecadacaoTotal(Double arrecadacaoTotal) {
-		this.arrecadacaoTotal = arrecadacaoTotal;
-	}
-
 	public Integer getGanhadoresSena() {
 		return ganhadoresSena;
 	}
@@ -194,12 +212,12 @@ public class Sorteio {
 		this.cidade = cidade;
 	}
 
-	public String getUF() {
-		return UF;
+	public String getCidadeUF() {
+		return CidadeUF;
 	}
 
-	public void setUF(String uF) {
-		UF = uF;
+	public void setCidadeUF(String CidadeUF) {
+		this.CidadeUF = CidadeUF;
 	}
 
 	public Double getRateioSena() {
@@ -242,14 +260,6 @@ public class Sorteio {
 		this.rateioQuadra = rateioQuadra;
 	}
 
-	public String getAcumulado() {
-		return acumulado;
-	}
-
-	public void setAcumulado(String acumulado) {
-		this.acumulado = acumulado;
-	}
-
 	public Double getValorAcumulado() {
 		return valorAcumulado;
 	}
@@ -266,12 +276,12 @@ public class Sorteio {
 		this.estimativaPremio = estimativaPremio;
 	}
 
-	public Double getAcumuladoMegaDaVirada() {
-		return acumuladoMegaDaVirada;
+	public Double getacumuladoProxConcurso() {
+		return acumuladoProxConcurso;
 	}
 
-	public void setAcumuladoMegaDaVirada(Double acumuladoMegaDaVirada) {
-		this.acumuladoMegaDaVirada = acumuladoMegaDaVirada;
+	public void setacumuladoProxConcurso(Double acumuladoProxConcurso) {
+		this.acumuladoProxConcurso = acumuladoProxConcurso;
 	}
 
 }

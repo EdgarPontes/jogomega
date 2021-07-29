@@ -24,26 +24,26 @@ public class HtmlExtractor {
 	private int par = 0;
 	private int impar = 0;
 
-	private final int indiceDataSorteio = 0;
-	private final int indiceDezena1 = 1;
-	private final int indiceDezena2 = 2;
-	private final int indiceDezena3 = 3;
-	private final int indiceDezena4 = 4;
-	private final int indiceDezena5 = 5;
-	private final int indiceDezena6 = 6;
-	private final int indiceArrecadacaoTotal = 7;
+	private final int indiceCidadeUF = 0;
+	private final int indiceDataSorteio = 1;
+	private final int indiceDezena1 = 2;
+	private final int indiceDezena2 = 3;
+	private final int indiceDezena3 = 4;
+	private final int indiceDezena4 = 5;
+	private final int indiceDezena5 = 6;
+	private final int indiceDezena6 = 7;
 	private final int indiceGanhadoresSena = 8;
-	private final int indiceCidade = 9;
-	private final int indiceUF = 10;
+	private final int indiceGanhadoresQuina = 9;
+	private final int indiceGanhadoresQuadra = 10;
 	private final int indiceRateioSena = 11;
-	private final int indiceGanhadoresQuina = 12;
-	private final int indiceRateioQuina = 13;
-	private final int indiceGanhadoresQuadra = 14;
-	private final int indiceRateioQuadra = 15;
-	private final int indiceAcumulado = 16;
-	private final int indiceValorAcumulado = 17;
-	private final int indiceEstimativaPremio = 18;
-	private final int indiceAcumuladoMegaDaVirada = 19;
+	private final int indiceRateioQuina = 12;
+	private final int indiceRateioQuadra = 13;
+	private final int indiceArrecadacaoTotal = 14;
+	private final int indiceValorAcumulado = 15;
+	private final int indiceEstimativaPremio = 16;
+	private final int indiceeAcumulado = 17;
+	private final int indicesorteioEspecial = 18;
+	private final int indiceObservacao = 19;
 
 	@PersistenceContext
 	EntityManager em;
@@ -67,9 +67,9 @@ public class HtmlExtractor {
 
 			while ((line = reader.readLine()) != null) {
 				String plainEntity = "";
-				if (line.matches("<tr.*")) {
+				if (line.matches(".*<tr>")) {
 					line = readLine(reader);
-					if ((line.matches("<td rowspan=\"\\d+\">.*"))) {
+					if ((line.matches(".*<td align=.*"))) {
 						plainEntity = readOneEntireEntity(reader);
 						contador++;
 						if (contador > ultimoId ) {
@@ -106,30 +106,26 @@ public class HtmlExtractor {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		Sorteio sorteio = new Sorteio();
 		sorteio.setConcurso(contador);
-		sorteio.setDataDoSorteio(sdf.parse(entity[indiceDataSorteio]));
-		sorteio.setDezena1(Integer.parseInt(entity[indiceDezena1]));
-		sorteio.setDezena2(Integer.parseInt(entity[indiceDezena2]));
-		sorteio.setDezena3(Integer.parseInt(entity[indiceDezena3]));
-		sorteio.setDezena4(Integer.parseInt(entity[indiceDezena4]));
-		sorteio.setDezena5(Integer.parseInt(entity[indiceDezena5]));
-		sorteio.setDezena6(Integer.parseInt(entity[indiceDezena6]));
-		sorteio.setArrecadacaoTotal(Double.parseDouble(entity[indiceArrecadacaoTotal]));
-		sorteio.setGanhadoresSena(Integer.parseInt(entity[indiceGanhadoresSena]));
-		if (!(entity[indiceCidade].equals("vazio"))) {
-			sorteio.setCidade(entity[indiceCidade]);
-		}
-		if (!(entity[indiceUF].equals("vazio"))) {
-			sorteio.setUF(entity[indiceUF]);
-		}
-		sorteio.setRateioSena(Double.parseDouble(entity[indiceRateioSena]));
-		sorteio.setGanhadoresQuina(Integer.parseInt(entity[indiceGanhadoresQuina]));
-		sorteio.setRateioQuina(Double.parseDouble(entity[indiceRateioQuina]));
-		sorteio.setGanhadoresQuadra(Integer.parseInt(entity[indiceGanhadoresQuadra]));
-		sorteio.setRateioQuadra(Double.parseDouble(entity[indiceRateioQuadra]));
-		sorteio.setAcumulado(entity[indiceAcumulado]);
-		sorteio.setValorAcumulado(Double.parseDouble(entity[indiceValorAcumulado]));
-		sorteio.setEstimativaPremio(Double.parseDouble(entity[indiceEstimativaPremio]));
-		sorteio.setAcumuladoMegaDaVirada(Double.parseDouble(entity[indiceAcumuladoMegaDaVirada]));
+		sorteio.setCidadeUF(entity[indiceCidadeUF].trim());
+		sorteio.setDataDoSorteio(sdf.parse(entity[indiceDataSorteio].trim()));
+		sorteio.setDezena1(Integer.parseInt(entity[indiceDezena1].trim()));
+		sorteio.setDezena2(Integer.parseInt(entity[indiceDezena2].trim()));
+		sorteio.setDezena3(Integer.parseInt(entity[indiceDezena3].trim()));
+		sorteio.setDezena4(Integer.parseInt(entity[indiceDezena4].trim()));
+		sorteio.setDezena5(Integer.parseInt(entity[indiceDezena5].trim()));
+		sorteio.setDezena6(Integer.parseInt(entity[indiceDezena6].trim()));
+		sorteio.setGanhadoresSena(Integer.parseInt(entity[indiceGanhadoresSena].trim()));
+		sorteio.setGanhadoresQuina(Integer.parseInt(entity[indiceGanhadoresQuina].trim()));
+		sorteio.setGanhadoresQuadra(Integer.parseInt(entity[indiceGanhadoresQuadra].trim()));
+		sorteio.setRateioSena(Double.parseDouble(entity[indiceRateioSena].trim()));
+		sorteio.setRateioQuina(Double.parseDouble(entity[indiceRateioQuina].trim()));
+		sorteio.setRateioQuadra(Double.parseDouble(entity[indiceRateioQuadra].trim()));
+		sorteio.setValorAcumulado(Double.parseDouble(entity[indiceArrecadacaoTotal].trim()));
+		sorteio.setEstimativaPremio(Double.parseDouble(entity[indiceEstimativaPremio].trim()));
+		sorteio.setacumuladoProxConcurso(Double.parseDouble(entity[indiceValorAcumulado].trim()));
+		sorteio.seteAcumulado(entity[indiceeAcumulado].trim());
+		sorteio.setSorteioEspecial(entity[indicesorteioEspecial].trim());
+		sorteio.setObservacao(entity[indiceObservacao].trim());
 		parOuImpar(sorteio);
 		sorteio.setNumerosPar(par);
 		sorteio.setNumerosImpar(impar);
@@ -142,22 +138,32 @@ public class HtmlExtractor {
 		String plainEntityToReturn = "";
 		String line = "";
 		while ((!line.matches(".*</tr>.*"))) {
+			if(line.matches(".*<table>")){
+				while(!line.matches(".*</table>")){
+					plainEntityToReturn = plainEntityToReturn.replaceAll("<tr>", "");
+					plainEntityToReturn = plainEntityToReturn.replaceAll("<!-- LINHA DA CIDADE-->", "");
+					plainEntityToReturn = plainEntityToReturn.replaceAll("<td></td>", "");
+					plainEntityToReturn = plainEntityToReturn.replaceAll("<td>.*</td>", "");
+					plainEntityToReturn = plainEntityToReturn.replaceAll("</tr>", "");
+					plainEntityToReturn = plainEntityToReturn.replaceAll("<!-- FIM LINHA CIDADE-->", "");
+					line = readLine(reader);
+				}
+			}
 			plainEntityToReturn = plainEntityToReturn + "" + line;
 			line = readLine(reader);
 		}
-		plainEntityToReturn = plainEntityToReturn.replaceAll("<td rowspan=\"\\d+\">", "");
-		plainEntityToReturn = plainEntityToReturn.replaceAll("</td><td>", ";");
-		plainEntityToReturn = plainEntityToReturn.replaceAll("<td></td>", "");
-		plainEntityToReturn = plainEntityToReturn.replaceAll("<td>", "");
+
+		plainEntityToReturn = plainEntityToReturn.replaceAll("<td align=\"center\">", "");
 		plainEntityToReturn = plainEntityToReturn.replaceAll("</td>", ";");
-		plainEntityToReturn = plainEntityToReturn.replaceAll("&nbsp", "vazio");
-		plainEntityToReturn = plainEntityToReturn.replaceAll("\\s", "");
-		plainEntityToReturn = plainEntityToReturn.replaceAll(";$", "");
+		plainEntityToReturn = plainEntityToReturn.replaceAll("<!-- DEZENAS -->", "");
+		plainEntityToReturn = plainEntityToReturn.replaceAll("<!-- GANHADORES -->", "");
+		plainEntityToReturn = plainEntityToReturn.replaceAll("<!-- RATEIO-->", "");
 		plainEntityToReturn = plainEntityToReturn.replaceAll("\\.", "");
 		plainEntityToReturn = plainEntityToReturn.replaceAll(",", ".");
 		plainEntityToReturn = plainEntityToReturn.replaceAll(";;", ";vazio;");
+		plainEntityToReturn = plainEntityToReturn.replaceAll("</table>", "");
 
-		return plainEntityToReturn;
+		return plainEntityToReturn.trim();
 	}
 
 	public void parOuImpar(Sorteio sorteio) {
