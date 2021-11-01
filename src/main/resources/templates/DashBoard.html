@@ -62,14 +62,19 @@
 							<tr>
 								<th class="text-center">Sorteio</th>
 								<th class="text-center">Data Sorteio</th>
-								<th class="text-center">Dezena</th>
-								<th class="text-center">Dezena</th>
-								<th class="text-center">Dezena</th>
-								<th class="text-center">Dezena</th>
-								<th class="text-center">Dezena</th>
-								<th class="text-center">Dezena</th>
-								<th class="text-center">Numeros par</th>
-								<th class="text-center">Numeros Impar</th>
+								<th class="text-center">Dez.</th>
+								<th class="text-center">Dez.</th>
+								<th class="text-center">Dez.</th>
+								<th class="text-center">Dez.</th>
+								<th class="text-center">Dez.</th>
+								<th class="text-center">Dez.</th>
+								<th class="text-center">Qtd par</th>
+								<th class="text-center">Qtd Impar</th>
+								<th class="text-center">Acum</th>
+								<th class="text-center">Ganhador Quina</th>
+								<th class="text-center">Valor Quina</th>
+								<th class="text-center">Ganhador Sena</th>
+								<th class="text-center">Valor Sena</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -84,23 +89,14 @@
 								<td th:text="${sorteio.dezena6}"></td>
 								<td th:text="${sorteio.numerosPar}"></td>
 								<td th:text="${sorteio.numerosImpar}"></td>
+								<td th:text="${sorteio.eAcumulado}"></td>
+								<td th:text="${sorteio.ganhadoresQuina}"></td>
+								<td th:text="${sorteio.rateioQuina}"></td>
+								<td th:text="${sorteio.ganhadoresSena}"></td>
+								<td th:text="${sorteio.rateioSena}"></td>
 							</tr>
 						</tbody>
 					</table>
-					<tfoot>
-						<tr>
-							<th class="text-center">Sorteio</th>
-							<th class="text-center">Data Sorteio</th>
-							<th class="text-center">Dezena</th>
-							<th class="text-center">Dezena</th>
-							<th class="text-center">Dezena</th>
-							<th class="text-center">Dezena</th>
-							<th class="text-center">Dezena</th>
-							<th class="text-center">Dezena</th>
-							<th class="text-center">Numeros par</th>
-							<th class="text-center">Numeros Impar</th>
-						</tr>
-					</tfoot>
 				</div>
 			</div>
 
