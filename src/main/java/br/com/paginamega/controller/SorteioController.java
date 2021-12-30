@@ -4,6 +4,7 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.text.ParseException;
 
+import br.com.paginamega.domain.Jogo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
@@ -33,6 +34,13 @@ public class SorteioController {
 		// mv.addObject("sorteios", sorteioRepository.findByConcursoLessThan(2100));
 		// mv.addObject("sorteios", sorteioRepository.findByConcursoGreaterThan(2137));
 
+		return mv;
+	}
+
+	@RequestMapping("/index")
+	public ModelAndView index(){
+		ModelAndView mv = new ModelAndView("Index");
+		mv.addObject(new Jogo());
 		return mv;
 	}
 
