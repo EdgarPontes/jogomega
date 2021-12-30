@@ -1,0 +1,1 @@
+web: java -jar target/pagina_mega-0.0.1-SNAPSHOT.jar
