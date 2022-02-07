@@ -56,8 +56,8 @@
 				</form-->
 			</div>
 		</nav>
-				<div class="col py-3 px-lg-5 border bg-light">
-					<table id="tabela" class="table table-striped table-bordered" style="width:100%">
+				<div class="col py-3 px-lg-5 border bg-light table-responsive">
+					<table id="tabela" class="table ">
 						<thead >
 							<tr>
 								<th class="text-center">Sorteio</th>
@@ -91,9 +91,9 @@
 								<td th:text="${sorteio.numerosImpar}"></td>
 								<td th:text="${sorteio.eAcumulado}"></td>
 								<td th:text="${sorteio.ganhadoresQuina}"></td>
-								<td th:text="${sorteio.rateioQuina}"></td>
+								<td th:text="${#numbers.formatCurrency(sorteio.rateioQuina)}"></td>
 								<td th:text="${sorteio.ganhadoresSena}"></td>
-								<td th:text="${sorteio.rateioSena}"></td>
+								<td th:text="${#numbers.formatCurrency(sorteio.rateioSena)}"></td>
 							</tr>
 						</tbody>
 					</table>
